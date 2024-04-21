@@ -6,25 +6,44 @@ library(ggplot2)
 library(DBI)
 library(duckdb)
 
+# Connect to the database
 con <- DBI::dbConnect(duckdb::duckdb(), dbdir = "my-db.duckdb")
+
+# Write the penguins table to the database
 DBI::dbWriteTable(con, "penguins", palmerpenguins::penguins, overwrite = TRUE)
 df <- dplyr::tbl(con, "penguins")
 
+# Summary statistics by species and sex
 df %>%
   group_by(species, sex) %>%
   summarise(
     across(
-        ends_with("mm") | ends_with("g"),
+      ends_with("mm") | ends_with("g"),
       \(x) mean(x, na.rm = TRUE)
-      )
-    ) %>%
+    )
+  ) %>%
   dplyr::collect() %>%
   knitr::kable()
 
+# Scatter plot with linear regression
 df %>%
   ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +
-  geom_point() + 
+  geom_point() +
   geom_smooth(method = "lm")
 
+# Distribution of flipper length
+df %>%
+  ggplot(aes(x = flipper_length_mm)) +
+  geom_histogram(bins = 30, fill = "blue", color = "black") +
+  facet_wrap(~species)
+
+# Box plots for body mass by species and sex
+df %>%
+  ggplot(aes(x = species, y = body_mass_g, fill = sex)) +
+  geom_boxplot() +
+  labs(title = "Body Mass by Species and Sex")
+
+# Disconnect from the database
 DBI::dbDisconnect(con)
+
 ```
