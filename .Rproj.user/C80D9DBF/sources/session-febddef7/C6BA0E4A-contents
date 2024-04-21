@@ -6,8 +6,10 @@ website:
   navbar:
     left:
       - href: eda.qmd
-        text: Home
-      - about.qmd
+        text: EDA
+      - href: model.qmd
+        text: Model
+
 
 format:
   html:
