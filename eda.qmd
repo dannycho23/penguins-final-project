@@ -28,4 +28,3 @@ df %>%
 
 DBI::dbDisconnect(con)
 ```
-
