@@ -3,7 +3,7 @@
     "path": "~/Palmer Penguin Website/eda.qmd",
     "project_path": "eda.qmd",
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "655226588",
     "contents": "",
     "dirty": false,
     "created": 1713638904812.0,
@@ -16,11 +16,11 @@
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1713643774,
+    "lastKnownWriteTime": 1713669670,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1713643774516,
+    "last_content_update": 1713669670914,
     "read_only": false,
     "read_only_alternatives": []
 }
